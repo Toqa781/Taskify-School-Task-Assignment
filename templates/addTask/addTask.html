@@ -1,0 +1,83 @@
+{%extends 'navbar.html'%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/addTask.css' %}"></link>
+
+
+
+<!DOCTYPE html>
+<html>
+   
+<head>
+    <meta charset="UTF-8">
+    <title>Taskify - Add Task</title>
+</head>
+
+<body>
+   
+    <div class="add">
+        <header>
+            <h2 style="color:#0a387d">Add Task</h2>
+        </header>
+        <hr>
+
+    <form method="POST" action="{% url 'SaveData' %}">
+        {% csrf_token %}
+        
+        <div>
+            <label>Task ID</label>
+            <input type="text"    class="input" value = "{{task.id|add:1}}" disabled>
+            
+            <p class = "error Taskid-error"></p>
+        </div>
+        <div>
+            <label>Task Title</label>
+            <input type="text" autofocus name="title" placeholder="ex.Assignment 1" class="input">
+            <p class = "error title-error"></p>
+        </div>
+    
+        <div>
+            <label>Teacher Name</label>
+            <input type="text"  name="teacher" placeholder="ex.Mr.Ali" class="input">
+            <p class = "error TName-error"></p>
+        </div>
+  
+        <div>
+            <select name="choose" class="select" required>
+                <option value="" disabled selected>Priority</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              
+                
+            </select> 
+        </div>
+   
+        <div>
+            <label>Description</label>
+            <textarea class="input" name="Description" cols="20" rows="2"></textarea>
+            <p class = "error des-error"></p>
+        </div>
+ 
+        <div>
+            <label>Created by</label>
+            <input name="admin"  placeholder="Logged-in admin" class="input" value= "{{request.user}}" disabled>
+            <p class="error admin-error"></p>
+        </div>
+       
+       <button type="submit">Save</button>
+            <a href=""><button type="button">Cancel</button></a>
+        
+           
+
+    </form>
+
+</div>
+
+{%load static%}
+<script src="{%static 'js/addTask.js'%}"></script>
+   
+</body>
+
+</html>
+{%endblock content%}

@@ -1,0 +1,80 @@
+{%extends 'navbar.html'%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/AdminHome.css' %}">
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Taskify - Home</title>
+</head>
+
+
+<body>
+    <header>
+        <h2 style="text-align: center;color:#0a387d"> Welcome back, {{request.user}}<span id="user"></span></h2>
+    </header>
+    <hr>
+    <div class="table">
+    <h3><a class ="thead" href="{%url 'list'%}">My tasks</a></h3>
+
+<nav>
+
+        
+    <a href="#"class="links" onclick="upcoming()">Upcoming</a>
+    <a href = "#"class="links" onclick="overdue()">Unmarked</a>
+    <a href="#"class="links" onclick="completed()">Completed</a>
+                
+        </nav>
+        <hr>
+        <div class="tasks">
+        <div id="upcom" class="st">
+        
+            {% for task in task %}
+            <hr>
+            <a href="{% url 'task_detail' taskid=task.id %}">{{ task.title }}</a>
+            <br>
+        {% endfor %}
+        
+            <hr>
+    
+         </div>
+         
+         <div id ="ovrdu"class="nd">
+            
+           
+                {%for x in task%}
+                {%if x.completed == False %}
+                <hr>
+                <a href="{% url 'task_detail' taskid=x.id %}">   {{ x.title }}   </a>
+                <br>
+                {%endif%}
+                {%endfor%}
+            </a>
+            <hr>
+         </div>
+         
+         <div id ="cmplt"class="rd">
+           
+            
+                {%for x in task%}
+                {%if x.completed == True %}
+                <hr>
+                <a href="{% url 'task_detail' taskid=x.id %}"> {{x.title}}   </a>
+                <br>
+                {%endif%}
+                {%endfor%}
+         
+            <hr>
+        </div>
+        
+        </div>
+    </div>
+
+{%load static%}
+    <script src="{%static 'js/AdminHome.js'%}"></script>
+</body>
+
+</html>
+{%endblock content%}

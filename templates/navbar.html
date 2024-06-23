@@ -1,0 +1,15 @@
+{% load static %}
+<div class="nav">
+    <img src="{% static 'images/result1.png' %}" class="logo">
+<div class="buttons">
+    <ul>
+<li><a class="nav-link" href="{%url 'showTask'%}">Home</a></li>
+        <li><a class="nav-link"href="{%url 'showPage'%}">Add Task</a></li>
+        
+        <li><a class="log-link"href="{%url 'logout'%}">Log Out</a></li>
+    
+    </ul>
+</div>
+</div>
+{%block content%}
+{%endblock content%}

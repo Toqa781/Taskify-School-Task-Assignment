@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Taskify - Completed</title>
+    <link rel="stylesheet" href="{% static 'css/completedmain.css' %}" />
+  </head>
+
+  <body>
+    <div class="nav">
+      <img src="{% static 'images\result1.png' %}" class="logo" />
+      <div class="buttons">
+        <ul>
+          <li><a class="nav-link" href="/availableTasks/">Home</a></li>
+          <li><a class="nav-link" href="/completed/">Completed Tasks</a></li>
+          <li><a class="log-link" href="{% url 'logout' %}">Log Out</a></li>
+          
+        </ul>
+      </div>
+    </div>
+    <div style="padding: 30px 20px"></div>
+    <div class="table">
+      <div class="search">
+        <div class="com">
+          <h3 style="text-align: center">Completed Tasks</h3>
+          <hr />
+        </div>
+      </div>
+
+      {% if tasks %}
+      <ol style="list-style-type: circle" id="TasksList">
+        {% for task in tasks %} {% if task.completed%}
+        <li style="padding-bottom: 10px;">
+          <a
+            href="{% url 'task' task.id %}"
+            style="text-decoration: none; color: #000"
+            >{{ task.title }}</a>
+        </li>
+        {% endif %} 
+        {% endfor %}
+      </ol>
+      {% else %}
+      <p style="padding: 30px; color: #052657de">
+        No Tasks Marked as Completed.
+      </p>
+      {% endif %}
+    </div>
+
+    <img
+      src="{% static 'images\undraw_Completed_m9ci.png' %}"
+      alt="Sticker"
+      class="sticker"
+    />
+  </body>
+</html>

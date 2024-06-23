@@ -1,0 +1,294 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/Edit.css' %}">
+    <title>Edit Task</title>
+</head>
+<style>
+    body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: hsla(216, 0%, 90%, 1);
+    background-image:
+        radial-gradient(at 99% 0%, hsla(216, 89%, 18%, 0.87) 0px, transparent 50%),
+        radial-gradient(at 0% 99%, hsla(212, 42%, 64%, 1) 0px, transparent 50%);
+}
+
+.nav {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.header {
+    padding-left: 25px;
+    color: #6496d4;
+    text-align: left;
+    margin: 0px;
+}
+
+header h2 {
+    color: #052659;
+}
+
+/* .header:hover {
+    cursor: pointer;
+} */
+
+.logo {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    left: 0%;
+    padding-top: 15px;
+    cursor: pointer;
+
+}
+
+.buttons {
+    padding-inline-start: 0px;
+    list-style: none;
+    flex: 1;
+    text-align: right;
+
+}
+
+.nav ul li {
+    text-align: right;
+    display: inline;
+    margin: 6px;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav ul li .nav-link {
+    border-radius: 9px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 15px 15px;
+    color: white;
+    border-radius: 30px;
+}
+
+.nav-link:hover {
+    text-decoration: none;
+    background-color: rgba(37, 34, 30, 0.108);
+
+}
+
+.log-link {
+    text-decoration: none;
+    padding: 8px 20px;
+    margin: 6px;
+    border-radius: 20px;
+    /* transition: background-color 0.3 ease; */
+    color: #fff;
+    background-color: #6496d4;
+}
+
+.log-link:hover {
+    background-color: #0a387d;
+    color: #fff;
+}
+
+/* .Tasks {
+    color: #000;
+    padding: 10px
+} */
+
+button {
+    padding: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+
+/* nav .thead {
+    display: inline;
+} */
+
+.frame {
+    width: 700px;
+    height: 800px;
+    margin: auto;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 0 20px 9px rgb(237, 235, 235);
+    /* //align-items: left; */
+    background-color: white;
+    padding: 15px;
+}
+
+label {
+    color: #052659;
+    width: 30%;
+    height: 70%;
+}
+
+.input-field {
+    border-style: solid;
+    width: 95%;
+    padding: 10px;
+    margin: 10px auto;
+    outline: none;
+    background-color: transparent;
+    border-radius: 9px;
+    border-color: rgb(197, 217, 235);
+}
+
+.describe {
+    overflow: hidden;
+    height: 10%;
+    margin: 10px auto;
+    outline: none;
+}
+
+#pri {
+    text-align: left;
+    text-decoration: solid;
+    margin: 10px auto;
+    border-color: rgb(197, 217, 235);
+    border-style: solid;
+    border-radius: 9px;
+    width: 95%;
+    padding: 10px;
+    outline: none;
+}
+
+.button {
+
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    font-size: medium;
+    background-color: #6496d4;
+    border-radius: 30px;
+    width: 15%;
+    border: transparent;
+    color: white
+}
+
+.button:hover {
+    background-color: #052659;
+}
+
+.imgOne {
+    position: absolute;
+    bottom: 5px;
+    left: -410px;
+    width: 240px;
+    height: auto;
+    z-index: 999;
+    mix-blend-mode: multiply;
+    opacity: 0.8;
+    position: absolute;
+}
+
+.imgTwo {
+    position: absolute;
+    bottom: 5px;
+    right: -410px;
+    width: 280px;
+    height: auto;
+    z-index: 999;
+    mix-blend-mode: multiply;
+    opacity: 0.8;
+    position: absolute;
+
+}
+
+.error {
+    color: rgba(255, 0, 0, 0.867);
+    padding-top: 5px;
+    display: none;
+    font-size: small
+}
+
+.dispaly-error {
+    display: block;
+    transform: translateY(-20PX);
+}
+</style>
+<body>
+    <div class="nav">
+        <img class="logo" src="{% static 'images/result1.png' %}" alt="" class="header" id="school" onclick="transfer()">
+        <div class="buttons">
+            <ul>
+                <li><a class="nav-link" href="/AdminHome/">Home</a></li>
+                <li><a class="nav-link" href="/addTask/">Add Task</a></li>
+                <li><a class="log-link" href="{% url 'logout' %}">Log Out</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <form method="POST" action="{% url 'edit' task.id %}">
+        {% csrf_token %}
+        <div class="frame">
+            <header>
+                <h2>Edit Task</h2>
+                <hr style="color: rgb(149, 147, 147);">
+            </header>
+            <br>
+
+            <div id="edit" class="edits">
+                <div>
+                    <label for="id_taskid">Task ID</label>
+                    <input type="text" id="taskid" name="taskid" class="input-field" value="{{ task.id }}" disabled>
+                </div>
+                <br>
+                <div>
+                    <label for="id_title">Task Title</label>
+                    <input type="text" id="tasktitle" name="title" class="input-field" value="{{ form.title.value|default_if_none:'' }}">
+                    <p class="error title-error">{{ form.title.errors }}</p>
+                </div>
+                <br>
+                <div>
+                    <label for="id_teacher">Teacher Name</label>
+                    <input type="text" id="teachername" name="teacher" class="input-field" value="{{ form.teacher.value|default_if_none:'' }}">
+                    <p class="error TName-error">{{ form.teacher.errors }}</p>
+                </div>
+                <br>
+                <div>
+                    <label for="id_choose">Priority</label>
+                    <select id="pri" name="choose" class="input-field">
+                        <option value="" disabled selected>Select Priority</option>
+                        <option value="High" {% if form.choose.value == "High" %} selected {% endif %}>High</option>
+                        <option value="Medium" {% if form.choose.value == "Medium" %} selected {% endif %}>Medium</option>
+                        <option value="Low" {% if form.choose.value == "Low" %} selected {% endif %}>Low</option>
+                    </select>
+                    <p class="error choose-error">{{ form.choose.errors }}</p>
+                </div>
+                <br>
+                <div>
+                    <label for="id_Description">Description</label>
+                    <input type="text" id="description" name="Description" class="input-field describe" value="{{ form.Description.value|default_if_none:'' }}">
+                    <p class="error des-error">{{ form.Description.errors }}</p>
+                </div>
+                <br>
+                <div>
+                    <label for="id_admin">Created By</label>
+                    <input type="text" id="createdby" name="admin" class="input-field" value="{{ request.user }}" disabled>
+                </div>
+                <br>
+            </div>
+
+            <div>
+                <button type="submit" class="button" id="submitbtn">Save</button>
+                <input type="reset" value="Reset" class="button" id="resetbtn">
+            </div>
+            <div>
+                <img class="imgOne" src="{% static 'images/undraw_next_tasks_re_5eyy.svg' %}" alt="">
+                <img class="imgTwo" src="{% static 'images/undraw_filing_system_re_56h6.svg' %}" alt="">
+            </div>
+        </div>
+        <script src="{% static 'js/Edit.js' %}"></script>
+    </form>
+</body>
+</html>

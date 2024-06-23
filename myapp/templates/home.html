@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskify</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="icon" href="logo-no-background.svg">
+</head>
+
+
+<body>
+    <div class="header">
+        <img src="{%static 'images/result1.png'%}" alt="" class="logo">
+        <div class="nav"><ul>
+            
+            <li><a href="{%url 'login'%}">Login</a></li>
+            <li><a href="{%url 'register'%}">Signup</a></li>
+            
+            
+        </ul>
+        </div>       
+        </div>
+<div class="slogan">
+    <h1>Manage your tasks easier with Taskify!</h1>
+    <h4 style="color: #7da0ca;">Try Taskify and take control of your academic sucess</h4>
+</div>
+
+
+   <main>
+    <section class="content">
+        <div class="image-container">
+            <img src="{%static 'undraw_completed_tasks_vs6q.svg'%}" alt="" class="sticker">
+        </div>
+        <div class="about">
+    
+            <h3>Welcome to our platform designed to streamline task management between administrators and teachers. Our website offers an intuitive interface where administrators can effortlessly create, edit, and assign tasks, while teachers can access and complete these tasks with ease.</h3>
+            <h3>Our website promotes collaboration and efficiency, facilitating seamless communication between administrators and teachers to enhance productivity and optimize educational outcomes. Join us today and experience the convenience of effective task management in education.</h3>
+        </div>
+    </section>
+</main>
+
+    <footer><p>&copy; 2024 Taskify</p></footer>
+
+  
+</body>
+</html>
+<style>
+
+body,html{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: hsla(0, 0%, 90%, 1);
+    background-image:
+        radial-gradient(at 99% 0%, hsla(216, 89%, 18%, 0.87) 0px, transparent 50%),
+        radial-gradient(at 0% 99%, hsla(212, 42%, 64%, 1) 0px, transparent 50%);
+
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: #7da0ca;
+    
+
+}
+.logo{
+    position: absolute;
+    height:auto;
+    left: 0px;
+    width: 200px;
+    padding-top: 15px;
+  
+   
+  
+}
+.nav{
+    
+    flex:1;
+    text-align: right;
+}
+.nav ul{
+    list-style: none;
+}
+.nav li{
+    display: inline;
+    text-decoration: nones;
+}
+.nav a{
+    text-decoration: none;
+    padding: 8px 20px;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: #7da0ca;
+    transition: background-color 0.3 ease;
+    color: #fff;
+}
+.nav a:hover{
+    color: #052659
+ }
+h2{
+    padding-top: 30px;
+    margin-left: 10px;
+    color: #7da0ca;
+}
+h3{
+    margin-left: 10px;
+    color: #052659;
+}
+
+section{
+    display: flex;
+    align-items: center;
+
+}
+.slogan{
+    text-align: center;
+    padding: 80px;
+    font-size: 30px;
+    color: #052659;
+}
+.slogan a{
+    text-decoration: none;
+    padding: 8px 20px;
+    margin: 10px;
+    border-radius: 20px;
+    transition: background-color 0.3 ease;
+    color: #fff;
+    background-color: #7da0ca;
+}
+.slogan a:hover{
+    background-color: #052659;
+    color: #fff;
+}
+.image-container{
+    flex: 1;
+    
+}
+.sticker{
+    height: 300px;
+    width:600px ;
+}
+.about{
+  flex: 1;
+
+}
+footer{
+    margin-top: 50px;
+    width: 100%;
+    bottom: 0;
+    background-color: #7da0ca;
+    border-radius: 10px;
+    text-align: center;   
+    
+}
+footer p{
+    color: #fff;
+}
+</style>
