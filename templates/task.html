@@ -1,0 +1,47 @@
+
+{%load static%}
+<link rel="stylesheet" type="text/css" href="{%static 'css/task.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Details</title>
+    
+    <script src="{%static 'js/task.js' %}" defer></script>
+</head>
+<body>
+    <div class="nav">
+        <img src="{% static 'images/result1.png' %}"alt="" class="logo">
+        <nav>
+            <ul>
+                <li><a href="{% url 'showTask' %}">Home</a></li>
+                <li><a href="{% url 'SaveData' %}">Add Task</a></li>
+                <li><a href="{%url 'logout'%}">Log Out</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <h2> {{Task.title}} Details</h2>
+        <div>
+            <p><strong>ID:</strong>{{Task.id}}</p>
+            <p><strong>Title:</strong>{{Task.title}}</p>
+            <p><strong>Teacher:</strong> {{Task.teacher}}</p>
+            <p><strong>Priority:</strong>{{Task.choose}} </p>
+            <p><strong>Description:</strong>{{Task.Description}}</p>
+            <p><strong>Created By:</strong>{{Task.admin}}</p>
+            
+        </div>
+            <div>
+                <a href="Edit.html"><button>Edit</button></a>
+                <form method="post" action="{% url 'delete_task' Task.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+   
+</body>
+</html>
+

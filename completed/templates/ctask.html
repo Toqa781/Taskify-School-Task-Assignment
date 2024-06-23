@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Details</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/task_detail.css' %}"
+    />
+  </head>
+  <body>
+    <div class="nav">
+      <img src="{% static 'images/result1.png' %}" class="logo" />
+      <div class="buttons">
+        <ul>
+          <li><a class="nav-link" href="/availableTasks/">Home</a></li>
+          <li><a class="nav-link" href="/completed/">Completed Tasks</a></li>
+          <li><a class="log-link" href="{% url 'logout' %}">Log Out</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <h2>{{ task.title }} Details</h2>
+      <div>
+        <p><strong>ID:</strong>{{ task.id }}</p>
+        <p><strong>Title:</strong> {{ task.title }}</p>
+        <p><strong>Priority:</strong> {{ task.choose }}</p>
+        <p><strong>Teacher:</strong> {{task.teacher}}</p>
+        <p><strong>Description:</strong>{{ task.Description }}</p>
+        <p><strong>Created By:</strong>{{ task.admin }}</p>
+        <p><strong>Status:</strong>Done</p>
+      </div>
+      <div id="control">
+        <button id="cancelBtn">OK</button>
+      </div>
+    </div>
+    
+    <script src="{% static 'js/ctask_detail.js' %}" defer></script>
+  </body>
+</html>

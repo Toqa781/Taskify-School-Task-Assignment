@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/Edit.css' %}">
+</head>
+<body>
+    <div class="nav">
+        <img class="logo" src="{% static 'images/result1.png' %}" alt="" class="header" id="school" onclick="transfer()">
+        <div class="buttons">
+            <ul>
+                <li><a class="nav-link" href="/AdminHome/">Home</a></li>
+                <li><a class="nav-link" href="/addTask/">Add Task</a></li>
+                <li><a class="log-link" href="{% url 'logout' %}">Log Out</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <form method="POST" action="{% url 'edit' task.id %}">
+        {% csrf_token %}
+        <div class="frame">
+            <header>
+                <h2>Edit Task</h2>
+                <hr style="color: rgb(149, 147, 147);">
+            </header>
+            <br>
+
+            <div id="edit" class="edits">
+                <div>
+                    <label for="id_taskid">Task ID</label>
+                    <input type="text" id="taskid" name="taskid" class="input-field" value="{{ task.id }}" disabled>
+                </div>
+                <br>
+                <div>
+                    <label for="id_title">Task Title</label>
+                    <input type="text" id="tasktitle" name="title" class="input-field" value="{{ form.title.value|default_if_none:'' }}">
+                    <p class="error title-error">{{ form.title.errors }}</p>
+                </div>
+                <br>
+                <div>
+                    <label for="id_teacher">Teacher Name</label>
+                    <input type="text" id="teachername" name="teacher" class="input-field" value="{{ form.teacher.value|default_if_none:'' }}">
+                    <p class="error TName-error">{{ form.teacher.errors }}</p>
+                </div>
+                <br>
+                <div>
+                    <label for="id_choose">Priority</label>
+                    <select id="pri" name="choose" class="input-field">
+                        <option value="" disabled selected>Select Priority</option>
+                        <option value="High" {% if form.choose.value == "High" %} selected {% endif %}>High</option>
+                        <option value="Medium" {% if form.choose.value == "Medium" %} selected {% endif %}>Medium</option>
+                        <option value="Low" {% if form.choose.value == "Low" %} selected {% endif %}>Low</option>
+                    </select>
+                    <p class="error choose-error">{{ form.choose.errors }}</p>
+                </div>
+                <br>
+                <div>
+                    <label for="id_Description">Description</label>
+                    <input type="text" id="description" name="Description" class="input-field describe" value="{{ form.Description.value|default_if_none:'' }}">
+                    <p class="error des-error">{{ form.Description.errors }}</p>
+                </div>
+                <br>
+                <div>
+                    <label for="id_admin">Created By</label>
+                    <input type="text" id="createdby" name="admin" class="input-field" value="{{ request.user }}" disabled>
+                </div>
+                <br>
+            </div>
+
+            <div>
+                <button type="submit" class="button" id="submitbtn">Save</button>
+                <input type="reset" value="Reset" class="button" id="resetbtn">
+            </div>
+            <div>
+                <img class="imgOne" src="{% static 'images/undraw_next_tasks_re_5eyy.svg' %}" alt="">
+                <img class="imgTwo" src="{% static 'images/undraw_filing_system_re_56h6.svg' %}" alt="">
+            </div>
+        </div>
+        <script src="{% static 'js/Edit.js' %}"></script>
+    </form>
+</body>
+</html>
